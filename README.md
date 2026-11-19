@@ -4,8 +4,8 @@ A single-page job board where anyone can browse and search listings, and signed-
 
 Built with **React 19**, **React Router (data router)**, **TanStack Query**, **Redux Toolkit**, **Tailwind CSS v4**, and **Firebase Authentication + Realtime Database** (accessed through their REST APIs).
 
-> **Live demo:** _add link here once deployed_
-> **Repository:** _add link here_
+> **Live demo:** https://job-portal-eta-bay-54.vercel.app/
+> **Repository:** https://github.com/alaa-a-mo/job-portal
 
 ---
 
@@ -44,7 +44,7 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 
 **For employers (any signed-in user who posts jobs)**
 
-- Post, edit, and delete job listings (including dynamic lists for responsibilities, requirements, and benefits)
+- Post, edit, and delete job listings with a confirmation modal (including dynamic lists for responsibilities, requirements, and benefits)
 - _My Posted Jobs_ page with applicant counts
 - _Received Applications_ page grouped by job, with expandable cover letters, a "Reply via Email" link, and **Accept / Reject** actions
 
@@ -81,8 +81,8 @@ The Firebase JavaScript SDK is **not** used; the app talks to Firebase over `fet
 ### 1. Clone and install
 
 ```bash
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/alaa-a-mo/job-portal.git
+cd job-portal
 npm install
 ```
 
@@ -117,7 +117,13 @@ npm run preview   # preview the production build
 npm run lint      # run ESLint
 ```
 
-> **Deploying:** the app uses `createBrowserRouter`, so your host must rewrite all paths to `index.html` (for example a `_redirects` file on Netlify or a rewrite rule on Vercel/Firebase Hosting). Otherwise refreshing on `/jobs/<id>` returns a 404.
+### Deployment
+
+The project is deployed on Vercel.
+
+The `vercel.json` configuration includes a rewrite rule that directs application routes to `index.html`, allowing React Router routes to work when users refresh or open URLs directly.
+
+The Firebase environment variables must also be configured in Vercel under **Project Settings → Environment Variables**.
 
 ---
 
@@ -169,6 +175,13 @@ Applications are stored in two places so employers can list applicants per job a
 3. The job owner opens **Received Applications**, reads the cover letter, and clicks **Accept** or **Reject**.
 4. The applicant sees the updated status in **My Applications**.
 
+### Job deletion
+
+- Only the job owner can delete a job.
+- Deleting a job also removes its associated applications from both `applicationsByJob` and `applicationsByUser`.
+- The job and application records are removed using a single atomic multi-path update.
+- A confirmation modal prevents accidental deletion.
+
 ### State management
 
 - **Server state** (jobs, saved jobs, applications) lives in TanStack Query with per-user query keys; mutations invalidate the relevant queries.
@@ -178,14 +191,15 @@ Applications are stored in two places so employers can list applicants per job a
 
 ## Firebase security rules
 
-The app uses Firebase Realtime Database security rules to enforce:
+The Firebase Realtime Database rules enforce:
 
-- Job ownership on creation, updates, and deletion
-- Applicants writing only their own applications
-- Job owners accepting or rejecting applications
-- Users accessing only their own saved jobs and applications
+- Job ownership for creating, updating, and deleting job listings.
+- Applicants can create their own applications.
+- Applicants can read their own applications.
+- Job owners can review applications submitted to their jobs and update their status.
+- Users can access only their own saved jobs.
 
-- Firebase Realtime Database rules enforce authorization independently of client-side checks.
+Authorization is enforced by Firebase independently of client-side checks.
 
 See [`database.rules.json`](./database.rules.json) for the complete rules.
 

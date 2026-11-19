@@ -9,9 +9,11 @@ import ApplicationForm from "../components/ApplicationForm";
 import { useSavedJobs } from "../hooks/useSavedJobs";
 import { useDispatch } from "react-redux";
 import { notificationActions } from "../store/notificationSlice";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
 
 export default function JobsDetails() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -65,15 +67,11 @@ export default function JobsDetails() {
   });
 
   function handleDelete() {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this job?",
-    );
-
-    if (confirmed) {
-      deleteJobMutation(jobId);
-    }
+    setIsDeleteModalOpen(true);
   }
-
+  function confirmDelete() {
+    deleteJobMutation(jobId);
+  }
   function handleApplyClick() {
     if (!userId) {
       return navigate("/auth");
@@ -320,6 +318,14 @@ export default function JobsDetails() {
         onClose={() => setIsApplyModalOpen(false)}
         jobId={jobId}
         onApplicationSuccess={handleApplicationSuccess}
+      />
+
+      {/* Deletion Modal */}
+      <ConfirmDeleteModal
+        isOpen={isDeleteModalOpen}
+        onCancel={() => setIsDeleteModalOpen(false)}
+        onConfirm={confirmDelete}
+        isDeleting={isDeleting}
       />
     </div>
   );

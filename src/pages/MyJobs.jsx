@@ -5,8 +5,12 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorBlock from "../components/UI/ErrorBlock";
 import useDeleteJob from "../hooks/useDeleteJob";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
 
 export default function MyJobs() {
+  const [selectedJobId, setSelectedJobId] = useState(null);
+
   const userId = localStorage.getItem("userId");
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ["jobs"],
@@ -23,16 +27,15 @@ export default function MyJobs() {
     isPending: isDeleting,
     isError: isDeleteError,
     error: deleteError,
-  } = useDeleteJob();
+  } = useDeleteJob({
+    onSuccess: () => setSelectedJobId(null),
+  });
 
   function handleDelete(jobId) {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this job?",
-    );
-
-    if (confirmed) {
-      deleteJobMutation(jobId);
-    }
+    setSelectedJobId(jobId);
+  }
+  function confirmDelete() {
+    deleteJobMutation(selectedJobId);
   }
 
   if (isPending) {
@@ -88,6 +91,12 @@ export default function MyJobs() {
           </Link>
         </div>
       )}
+      <ConfirmDeleteModal
+        isOpen={!!selectedJobId}
+        onCancel={() => setSelectedJobId(null)}
+        onConfirm={confirmDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 }
