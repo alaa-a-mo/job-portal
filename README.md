@@ -32,6 +32,7 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 - Browse all job listings
 - Search by job title or company, and filter by employment type (Full-time, Part-time, Contract, Internship)
 - View a full job page: description, responsibilities, requirements, benefits, salary, experience level, department
+- Lazy loading and code splitting for secondary pages, reducing the initial JavaScript bundle and loading page code when needed
 
 **For signed-in users**
 
@@ -59,8 +60,8 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 ## Tech stack
 
 | Area         | Tools                                                                                         |
-| ------------ | --------------------------------------------------------------------------------------------- |
-| UI           | React 19, Tailwind CSS v4                                                                     |
+| ------------ | --------------------------------------------------------------------------------------------- | --- |
+| UI           | React 19 (lazy loading with `React.lazy` and `Suspense`), Tailwind CSS v4                     | v4  |
 | Routing      | React Router v7 (`createBrowserRouter`, loaders for route guards, actions for the auth form)  |
 | Server state | TanStack Query v5 (queries, mutations, cache invalidation)                                    |
 | UI state     | Redux Toolkit (global notification/toast state)                                               |
@@ -121,7 +122,25 @@ npm run lint      # run ESLint
 
 The project is deployed on Vercel.
 
-The `vercel.json` configuration includes a rewrite rule that directs application routes to `index.html`, allowing React Router routes to work when users refresh or open URLs directly.
+The project is deployed on Vercel.
+
+Production builds and code splitting
+
+Vite generates an optimized production build in the dist/ directory using npm run build.
+
+Secondary pages are lazy-loaded using React's lazy() and Suspense, so their JavaScript is downloaded when the corresponding page is needed rather than being included in the initial page load.
+
+Vite splits the application into separate JavaScript chunks during the production build.
+
+Use npm run preview to test the production build locally before deployment.
+
+Vercel configuration
+
+The vercel.json configuration includes a rewrite rule that directs application routes to index.html, allowing React Router routes to work when users refresh or open URLs directly.
+
+Vercel builds and deploys the project from the connected GitHub repository.
+
+The Firebase environment variables must also be configured in Vercel under Project Settings → Environment Variables.
 
 The Firebase environment variables must also be configured in Vercel under **Project Settings → Environment Variables**.
 
