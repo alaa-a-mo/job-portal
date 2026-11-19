@@ -1,0 +1,44 @@
+{
+  "rules": {
+    "jobs": {
+      ".read": true,
+      "$jobId": {
+        ".write": "auth != null && ((!data.exists() && newData.child('ownerId').val() === auth.uid) || (data.exists() && data.child('ownerId').val() === auth.uid))",
+        "ownerId": {
+          ".validate": "!data.exists() ? newData.val() === auth.uid : newData.val() === data.val()"
+        }
+      }
+    },
+    "savedJobs": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "applicationsByJob": {
+      "$jobId": {
+        ".read": "auth != null && root.child('jobs').child($jobId).child('ownerId').val() === auth.uid",
+        "$applicantId": {
+          ".read": "auth != null && auth.uid === $applicantId",
+          ".write": "auth != null && ((auth.uid === $applicantId && !data.exists() && root.child('jobs').child($jobId).exists()) || (!newData.exists() && root.child('jobs').child($jobId).child('ownerId').val() === auth.uid))",
+          "status": {
+            ".write": "auth != null && root.child('jobs').child($jobId).child('ownerId').val() === auth.uid && data.val() === 'pending' && (newData.val() === 'accepted' || newData.val() === 'rejected')",
+            ".validate": "!data.exists() ? newData.val() === 'pending' : data.val() === 'pending' && (newData.val() === 'accepted' || newData.val() === 'rejected')"
+          }
+        }
+      }
+    },
+    "applicationsByUser": {
+      "$applicantId": {
+        ".read": "auth != null && auth.uid === $applicantId",
+        "$jobId": {
+          ".write": "auth != null && ((auth.uid === $applicantId && !data.exists() && root.child('jobs').child($jobId).exists()) || (!newData.exists() && root.child('jobs').child($jobId).child('ownerId').val() === auth.uid))",
+          "status": {
+            ".write": "auth != null && root.child('jobs').child($jobId).child('ownerId').val() === auth.uid && data.val() === 'pending' && (newData.val() === 'accepted' || newData.val() === 'rejected')",
+            ".validate": "!data.exists() ? newData.val() === 'pending' : data.val() === 'pending' && (newData.val() === 'accepted' || newData.val() === 'rejected')"
+          }
+        }
+      }
+    }
+  }
+}
