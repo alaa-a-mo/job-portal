@@ -33,6 +33,7 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 - Search by job title or company, and filter by employment type (Full-time, Part-time, Contract, Internship)
 - View a full job page: description, responsibilities, requirements, benefits, salary, experience level, department
 - Lazy loading and code splitting for secondary pages, reducing the initial JavaScript bundle and loading page code when needed
+- Light and dark mode toggle with `localStorage` persistence, OS color-scheme detection, and flash-free initial load
 
 **For signed-in users**
 
@@ -57,18 +58,20 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 
 ---
 
-## Tech stack
+## Tech Stack
 
-| Area         | Tools                                                                                         |
-| ------------ | --------------------------------------------------------------------------------------------- | --- |
-| UI           | React 19 (lazy loading with `React.lazy` and `Suspense`), Tailwind CSS v4                     | v4  |
-| Routing      | React Router v7 (`createBrowserRouter`, loaders for route guards, actions for the auth form)  |
-| Server state | TanStack Query v5 (queries, mutations, cache invalidation)                                    |
-| UI state     | Redux Toolkit (global notification/toast state)                                               |
-| Backend      | Firebase Authentication (Identity Toolkit REST API) and Firebase Realtime Database (REST API) |
-| Tooling      | Vite 8, ESLint 10 (`eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`)                |
+| Category            | Technologies                                                                |
+| ------------------- | --------------------------------------------------------------------------- |
+| **Frontend**        | React 19, Tailwind CSS v4 (class-based dark mode)                           |
+| **Routing**         | React Router v7 (data router, loaders, actions, route-based code splitting) |
+| **Server State**    | TanStack Query v5 (data fetching, mutations, cache invalidation)            |
+| **Global UI State** | Redux Toolkit (notifications and toast messages)                            |
+| **Authentication**  | Firebase Authentication (Identity Toolkit REST API)                         |
+| **Database**        | Firebase Realtime Database (REST API)                                       |
+| **Build Tool**      | Vite 8                                                                      |
+| **Code Quality**    | ESLint 10, React Hooks and React Refresh plugins                            |
 
-The Firebase JavaScript SDK is **not** used; the app talks to Firebase over `fetch`.
+**API Integration:** Firebase services are accessed directly through the Fetch API. The Firebase JavaScript SDK is not used.
 
 ---
 
@@ -122,27 +125,18 @@ npm run lint      # run ESLint
 
 The project is deployed on Vercel.
 
-The project is deployed on Vercel.
+**Production builds and code splitting**
 
-Production builds and code splitting
+- Vite generates an optimized production build in the `dist/` directory using `npm run build`.
+- Secondary pages are lazy-loaded using React's `lazy()` and `Suspense`, so their JavaScript is downloaded when the corresponding page is needed rather than being included in the initial page load.
+- Vite splits the application into separate JavaScript chunks during the production build.
+- Use `npm run preview` to test the production build locally before deployment.
 
-Vite generates an optimized production build in the dist/ directory using npm run build.
+**Vercel configuration**
 
-Secondary pages are lazy-loaded using React's lazy() and Suspense, so their JavaScript is downloaded when the corresponding page is needed rather than being included in the initial page load.
-
-Vite splits the application into separate JavaScript chunks during the production build.
-
-Use npm run preview to test the production build locally before deployment.
-
-Vercel configuration
-
-The vercel.json configuration includes a rewrite rule that directs application routes to index.html, allowing React Router routes to work when users refresh or open URLs directly.
-
-Vercel builds and deploys the project from the connected GitHub repository.
-
-The Firebase environment variables must also be configured in Vercel under Project Settings → Environment Variables.
-
-The Firebase environment variables must also be configured in Vercel under **Project Settings → Environment Variables**.
+- The `vercel.json` configuration includes a rewrite rule that directs application routes to `index.html`, allowing React Router routes to work when users refresh or open URLs directly.
+- Vercel builds and deploys the project from the connected GitHub repository.
+- The Firebase environment variables must also be configured in Vercel under **Project Settings → Environment Variables**.
 
 ---
 
@@ -154,7 +148,7 @@ src/
 ├── api/           # Firebase REST helpers (auth, jobs, applications), query client, token utils
 ├── components/    # Reusable UI (JobCard, JobForm, ApplicationForm, MainNav, ...)
 │   └── UI/        # LoadingSpinner, ErrorBlock, NotificationToast
-├── hooks/         # useSavedJobs, useDeleteJob
+├── hooks/         # useSavedJobs, useDeleteJob, useTheme
 ├── loaders/       # requireAuth route guard
 ├── pages/         # Route-level components
 ├── store/         # Redux store and notification slice
@@ -200,6 +194,12 @@ Applications are stored in two places so employers can list applicants per job a
 - Deleting a job also removes its associated applications from both `applicationsByJob` and `applicationsByUser`.
 - The job and application records are removed using a single atomic multi-path update.
 - A confirmation modal prevents accidental deletion.
+
+### Theme & styling
+
+- Dark mode is driven by a custom Tailwind v4 `@custom-variant dark` rule responding to the `.dark` class on `<html>`, paired with explicit `dark:` utility classes across layouts, cards, forms, modals, and pages.
+- A `useTheme` hook in `MainNav` manages theme state, syncs `.dark` on `document.documentElement`, and persists the choice in `localStorage` (defaulting to `prefers-color-scheme` on first visit).
+- An inline script in `index.html` applies the saved or system theme before first paint to prevent a flash of unstyled light mode.
 
 ### State management
 
