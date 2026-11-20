@@ -39,7 +39,6 @@ export default function JobsDetails() {
     data: jobAppData,
     isPending: isPendingJobApp,
     isError: isJobAppError,
-    // error: jobAppError,
   } = useQuery({
     queryKey: ["job-application", userId, jobId],
     queryFn: () => getApplication(userId, jobId),
@@ -118,10 +117,10 @@ export default function JobsDetails() {
   if (!data) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
-        <p>Job Not Found</p>
+        <p className="text-zinc-800 dark:text-zinc-200 mb-2">Job Not Found</p>
         <Link
           to="/"
-          className="inline-flex items-center text-sm font-medium text-zinc-600 hover:text-teal-700 transition-colors cursor-pointer"
+          className="inline-flex items-center text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-teal-700 dark:hover:text-teal-400 transition-colors cursor-pointer"
         >
           ← Back to all jobs
         </Link>
@@ -131,48 +130,45 @@ export default function JobsDetails() {
   const isOwner = userId && userId === data.ownerId;
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      {/* Back Link */}
       <div className="mb-6">
         <Link
           to="/"
-          className="inline-flex items-center text-sm font-medium text-zinc-600 hover:text-teal-700 transition-colors cursor-pointer"
+          className="inline-flex items-center text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-teal-700 dark:hover:text-teal-400 transition-colors cursor-pointer"
         >
           ← Back to all jobs
         </Link>
       </div>
       {isDeleteError && (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-6 rounded-xl border border-red-200 dark:border-red-800/70 bg-red-50 dark:bg-red-950/60 px-4 py-3 text-sm text-red-700 dark:text-red-300">
           {deleteError.message}
         </div>
       )}
-      {/* Main Header */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200/80 shadow-xs mb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-zinc-100">
+      <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800 shadow-xs mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-zinc-100 dark:border-zinc-800">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-100/70 text-teal-800">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-100/70 dark:bg-teal-950/80 text-teal-800 dark:text-teal-200">
                 {data.type}
               </span>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 text-zinc-700">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
                 📍 {data.location}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               {data.title}
             </h1>
-            <p className="text-base text-zinc-600 font-medium mt-1">
+            <p className="text-base text-zinc-600 dark:text-zinc-400 font-medium mt-1">
               {data.company} • Posted{" "}
               {new Date(data.createdAt).toLocaleDateString()}
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex items-center gap-3 shrink-0">
             {isOwner ? (
               <>
                 <Link
                   to={`/jobs/${jobId}/edit`}
-                  className="px-5 py-2.5 rounded-full border border-zinc-200 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 font-medium text-sm transition-all cursor-pointer inline-flex items-center justify-center"
+                  className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white font-medium text-sm transition-all cursor-pointer inline-flex items-center justify-center"
                 >
                   Edit Job
                 </Link>
@@ -180,7 +176,7 @@ export default function JobsDetails() {
                   type="button"
                   disabled={isDeleting}
                   onClick={handleDelete}
-                  className="px-5 py-2.5 rounded-full border border-zinc-200 text-red-500 hover:bg-red-50 hover:text-red-600 font-medium text-sm transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/60 hover:text-red-600 dark:hover:text-red-300 font-medium text-sm transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isDeleting ? "Deleting..." : "Delete Job"}
                 </button>
@@ -193,8 +189,8 @@ export default function JobsDetails() {
                   disabled={isSaveDisabled}
                   className={`px-4 py-2.5 rounded-full border font-medium text-sm transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
                     isSaved
-                      ? "border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100"
-                      : "border-zinc-200 text-zinc-700 hover:bg-zinc-50"
+                      ? "border-teal-200 dark:border-teal-800 bg-teal-50 dark:bg-teal-950/80 text-teal-700 dark:text-teal-300 hover:bg-teal-100 dark:hover:bg-teal-900/70"
+                      : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                   }`}
                   aria-label={isSaved ? "Remove saved job" : "Save job"}
                 >
@@ -208,9 +204,9 @@ export default function JobsDetails() {
                   onClick={handleApplyClick}
                   className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all cursor-pointer disabled:cursor-not-allowed ${
                     isJobAppError
-                      ? "bg-red-50 text-red-600 border border-red-200/80 shadow-none"
+                      ? "bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-300 border border-red-200/80 dark:border-red-800/70 shadow-none"
                       : hasApplied
-                        ? "bg-emerald-50 text-emerald-700 border border-emerald-200/80 shadow-none"
+                        ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/70 shadow-none"
                         : isCheckingApplication
                           ? "bg-teal-500 text-white opacity-80 shadow-xs"
                           : "bg-teal-600 hover:bg-teal-700 text-white shadow-xs"
@@ -223,54 +219,50 @@ export default function JobsDetails() {
           </div>
         </div>
 
-        {/* Overview */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 text-sm">
           <div>
-            <span className="block text-xs text-zinc-400 font-medium uppercase tracking-wider">
+            <span className="block text-xs text-zinc-400 dark:text-zinc-500 font-medium uppercase tracking-wider">
               Salary Range
             </span>
-            <span className="font-semibold text-zinc-900 mt-0.5 block">
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5 block">
               {data.salary}
             </span>
           </div>
           <div>
-            <span className="block text-xs text-zinc-400 font-medium uppercase tracking-wider">
+            <span className="block text-xs text-zinc-400 dark:text-zinc-500 font-medium uppercase tracking-wider">
               Experience
             </span>
-            <span className="font-semibold text-zinc-900 mt-0.5 block">
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5 block">
               {data.experienceLevel || "Not Specified"}
             </span>
           </div>
           <div>
-            <span className="block text-xs text-zinc-400 font-medium uppercase tracking-wider">
+            <span className="block text-xs text-zinc-400 dark:text-zinc-500 font-medium uppercase tracking-wider">
               Department
             </span>
-            <span className="font-semibold text-zinc-900 mt-0.5 block">
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5 block">
               {data.department || "Not Specified"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="space-y-8 bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200/80 shadow-xs">
-        {/* Role Overview */}
+      <div className="space-y-8 bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800 shadow-xs">
         <section>
-          <h2 className="text-lg font-bold text-zinc-900 mb-3">
+          <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3">
             About the Role
           </h2>
-          <p className="text-zinc-600 leading-relaxed text-sm sm:text-base">
+          <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed text-sm sm:text-base">
             {data.description}
           </p>
         </section>
 
-        {/* Responsibilities */}
         {data.responsibilities?.length > 0 && (
           <section>
-            <h2 className="text-lg font-bold text-zinc-900 mb-3">
+            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3">
               Key Responsibilities
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-zinc-600 text-sm sm:text-base leading-relaxed">
+            <ul className="list-disc list-inside space-y-2 text-zinc-600 dark:text-zinc-300 text-sm sm:text-base leading-relaxed">
               {data.responsibilities.map((res) => (
                 <li key={res}>{res}</li>
               ))}
@@ -278,13 +270,12 @@ export default function JobsDetails() {
           </section>
         )}
 
-        {/* Requirements */}
         {data.requirements?.length > 0 && (
           <section>
-            <h2 className="text-lg font-bold text-zinc-900 mb-3">
+            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3">
               Requirements & Qualifications
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-zinc-600 text-sm sm:text-base leading-relaxed">
+            <ul className="list-disc list-inside space-y-2 text-zinc-600 dark:text-zinc-300 text-sm sm:text-base leading-relaxed">
               {data.requirements.map((req) => (
                 <li key={req}>{req}</li>
               ))}
@@ -292,17 +283,16 @@ export default function JobsDetails() {
           </section>
         )}
 
-        {/* Benefits */}
         {data.benefits?.length > 0 && (
           <section>
-            <h2 className="text-lg font-bold text-zinc-900 mb-3">
+            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3">
               Benefits & Perks
             </h2>
             <div className="flex flex-wrap gap-2">
               {data.benefits.map((benefit) => (
                 <span
                   key={benefit}
-                  className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-medium bg-zinc-100 text-zinc-800"
+                  className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
                 >
                   ✓ {benefit}
                 </span>
@@ -312,7 +302,6 @@ export default function JobsDetails() {
         )}
       </div>
 
-      {/* Application Modal */}
       <ApplicationForm
         isOpen={isApplyModalOpen}
         onClose={() => setIsApplyModalOpen(false)}
@@ -320,7 +309,6 @@ export default function JobsDetails() {
         onApplicationSuccess={handleApplicationSuccess}
       />
 
-      {/* Deletion Modal */}
       <ConfirmDeleteModal
         isOpen={isDeleteModalOpen}
         onCancel={() => setIsDeleteModalOpen(false)}

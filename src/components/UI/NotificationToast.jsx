@@ -24,9 +24,8 @@ export default function NotificationToast() {
 
   return (
     <div
-      className={`fixed top-6 right-6 z-50 flex items-center gap-3 px-4 py-3.5 text-white rounded-2xl shadow-lg animate-in fade-in slide-in-from-top-4 duration-200 max-w-sm ${isSuccess ? "bg-emerald-600 shadow-emerald-600/20" : "bg-red-600 shadow-red-600/20"}`}
+      className={`fixed top-6 right-6 z-50 flex items-center gap-3 px-4 py-3.5 text-white rounded-2xl shadow-lg border border-white/15 animate-in fade-in slide-in-from-top-4 duration-200 max-w-sm ${isSuccess ? "bg-emerald-600 shadow-emerald-600/20" : "bg-red-600 shadow-red-600/20"}`}
     >
-      {/* Icon Badge */}
       <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/20 text-white shrink-0">
         {isSuccess ? (
           <svg
@@ -59,7 +58,6 @@ export default function NotificationToast() {
         )}
       </div>
 
-      {/* Message Copy */}
       <div className="flex-1 min-w-0">
         <p
           className={`text-xs font-bold uppercase tracking-wider ${isSuccess ? "text-emerald-100" : "text-red-100"}`}
@@ -71,7 +69,6 @@ export default function NotificationToast() {
         </p>
       </div>
 
-      {/* Dismiss Button */}
       <button
         type="button"
         className={`p-1 hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer shrink-0 ${isSuccess ? "text-emerald-200" : "text-red-200"}`}

@@ -87,13 +87,12 @@ export default function JobForm({
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      {/* Form Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-zinc-900 tracking-tight">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
           {initialData ? "Edit Job Listing" : "Post a New Job"}
         </h1>
 
-        <p className="text-sm text-zinc-500 mt-1">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
           {initialData
             ? "Update the details of your job listing."
             : "Fill in the details below to publish a new position to the job portal."}
@@ -102,11 +101,10 @@ export default function JobForm({
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-8 bg-white p-6 sm:p-8 rounded-3xl border border-zinc-200/80 shadow-xs"
+        className="space-y-8 bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-xs"
       >
-        {/* Section 1: Role Overview */}
         <div className="space-y-4">
-          <h2 className="text-sm font-semibold text-teal-700 uppercase tracking-wider">
+          <h2 className="text-sm font-semibold text-teal-700 dark:text-teal-400 uppercase tracking-wider">
             Role Overview
           </h2>
 
@@ -114,7 +112,7 @@ export default function JobForm({
             <div>
               <label
                 htmlFor="title"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Job Title *
               </label>
@@ -126,14 +124,14 @@ export default function JobForm({
                 defaultValue={initialData?.title ?? ""}
                 required
                 placeholder="e.g. Senior React Developer"
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
 
             <div>
               <label
                 htmlFor="company"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Company Name *
               </label>
@@ -145,7 +143,7 @@ export default function JobForm({
                 defaultValue={initialData?.company ?? ""}
                 required
                 placeholder="e.g. TechFlow Inc."
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
           </div>
@@ -154,7 +152,7 @@ export default function JobForm({
             <div>
               <label
                 htmlFor="location"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Location *
               </label>
@@ -166,14 +164,14 @@ export default function JobForm({
                 defaultValue={initialData?.location ?? ""}
                 required
                 placeholder="e.g. Remote (US)"
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
 
             <div>
               <label
                 htmlFor="type"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Employment Type
               </label>
@@ -182,7 +180,7 @@ export default function JobForm({
                 id="type"
                 name="type"
                 defaultValue={initialData?.type ?? "Full-time"}
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all cursor-pointer"
               >
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
@@ -194,7 +192,7 @@ export default function JobForm({
             <div>
               <label
                 htmlFor="salary"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Salary Range
               </label>
@@ -205,17 +203,16 @@ export default function JobForm({
                 type="text"
                 defaultValue={initialData?.salary ?? ""}
                 placeholder="e.g. $120,000 - $140,000 / yr"
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
           </div>
 
-          {/* Experience Level & Department */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="experienceLevel"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Experience Level
               </label>
@@ -224,7 +221,7 @@ export default function JobForm({
                 id="experienceLevel"
                 name="experienceLevel"
                 defaultValue={initialData?.experienceLevel ?? "Mid-level"}
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all cursor-pointer"
               >
                 <option value="Entry-level">Entry-level</option>
                 <option value="Mid-level">Mid-level</option>
@@ -236,7 +233,7 @@ export default function JobForm({
             <div>
               <label
                 htmlFor="department"
-                className="block text-xs font-semibold text-zinc-700 mb-1"
+                className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
               >
                 Department
               </label>
@@ -247,7 +244,7 @@ export default function JobForm({
                 type="text"
                 defaultValue={initialData?.department ?? ""}
                 placeholder="e.g. Engineering, Design, Marketing"
-                className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
           </div>
@@ -255,7 +252,7 @@ export default function JobForm({
           <div>
             <label
               htmlFor="description"
-              className="block text-xs font-semibold text-zinc-700 mb-1"
+              className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
             >
               Short Summary / Description *
             </label>
@@ -267,25 +264,24 @@ export default function JobForm({
               defaultValue={initialData?.description ?? ""}
               required
               placeholder="Briefly describe the role..."
-              className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+              className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
             />
           </div>
         </div>
 
-        <hr className="border-zinc-100" />
+        <hr className="border-zinc-100 dark:border-zinc-800" />
 
-        {/* Section 2: Dynamic List Fields */}
         {["responsibilities", "requirements", "benefits"].map((sectionKey) => (
           <div key={sectionKey} className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="block text-xs font-semibold text-zinc-900 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 {sectionKey}
               </label>
 
               <button
                 onClick={() => addListItem(sectionKey, newItem[sectionKey])}
                 type="button"
-                className="text-xs font-medium text-teal-600 hover:text-teal-700 transition-colors cursor-pointer"
+                className="text-xs font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors cursor-pointer"
               >
                 + Add item
               </button>
@@ -303,12 +299,14 @@ export default function JobForm({
                   }
                 }}
                 placeholder={`Add ${sectionKey.slice(0, -1)} point...`}
-                className="flex-1 px-3.5 py-2 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+                className="flex-1 px-3.5 py-2 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
               />
             </div>
 
             {errors[sectionKey] && (
-              <p className="text-xs text-red-500">{errors[sectionKey]}</p>
+              <p className="text-xs text-red-500 dark:text-red-400">
+                {errors[sectionKey]}
+              </p>
             )}
 
             {lists[sectionKey].length > 0 && (
@@ -318,13 +316,13 @@ export default function JobForm({
                     key={`${sectionKey}-${index}`}
                     className="flex items-center justify-between gap-3"
                   >
-                    <span className="text-sm font-medium text-zinc-700 wrap-break-word flex-1 min-w-0">
+                    <span className="text-sm font-medium text-zinc-700 dark:text-zinc-200 wrap-break-word flex-1 min-w-0">
                       {item}
                     </span>
 
                     <button
                       type="button"
-                      className="text-zinc-400 hover:text-red-500 transition-colors cursor-pointer shrink-0 p-1"
+                      className="text-zinc-400 dark:text-zinc-500 hover:text-red-500 dark:hover:text-red-400 transition-colors cursor-pointer shrink-0 p-1"
                       aria-label="Remove item"
                       onClick={() => removeListItem(sectionKey, index)}
                     >
@@ -337,14 +335,17 @@ export default function JobForm({
           </div>
         ))}
 
-        {isError && <p className="text-sm text-red-500">{error.message}</p>}
+        {isError && (
+          <p className="text-sm text-red-500 dark:text-red-400">
+            {error.message}
+          </p>
+        )}
 
-        {/* Form Actions */}
-        <div className="pt-4 border-t border-zinc-100 flex items-center justify-end gap-3">
+        <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-end gap-3">
           <button
             type="button"
             onClick={onCancel}
-            className="px-5 py-2.5 rounded-full border border-zinc-200 text-zinc-700 hover:bg-zinc-50 font-medium text-xs transition-all cursor-pointer"
+            className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium text-xs transition-all cursor-pointer"
           >
             Cancel
           </button>

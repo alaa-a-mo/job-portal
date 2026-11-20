@@ -36,10 +36,12 @@ export default function SavedJobs() {
   if (savedJobs.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
-        <p>No Saved Jobs Found</p>
+        <p className="text-zinc-800 dark:text-zinc-200 mb-2">
+          No Saved Jobs Found
+        </p>
         <Link
           to="/"
-          className="inline-flex items-center text-sm font-medium text-zinc-600 hover:text-teal-700 transition-colors cursor-pointer"
+          className="inline-flex items-center text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-teal-700 dark:hover:text-teal-400 transition-colors cursor-pointer"
         >
           ← Back to all jobs
         </Link>
@@ -50,7 +52,7 @@ export default function SavedJobs() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
           Your Saved Jobs
         </h1>
       </div>

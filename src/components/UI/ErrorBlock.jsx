@@ -1,8 +1,7 @@
 export default function ErrorState({ message, onRetry }) {
   return (
-    <div className="text-center py-16 px-6 bg-zinc-50 rounded-3xl border border-zinc-200/80 max-w-xl mx-auto my-8">
-      {/* Warning / Error Icon */}
-      <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-50 text-red-600">
+    <div className="text-center py-16 px-6 bg-zinc-50 dark:bg-zinc-900 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 max-w-xl mx-auto my-8">
+      <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-50 dark:bg-red-950/70 text-red-600 dark:text-red-400">
         <svg
           className="w-6 h-6"
           fill="none"
@@ -18,23 +17,20 @@ export default function ErrorState({ message, onRetry }) {
         </svg>
       </div>
 
-      {/* Heading */}
-      <h3 className="text-lg font-semibold text-zinc-900 mb-1">
+      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
         An Error Occurred
       </h3>
 
-      {/* Dynamic Error Message */}
-      <p className="text-sm text-zinc-500 max-w-md mx-auto mb-6">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-md mx-auto mb-6">
         {message ||
           "An unexpected error occurred while fetching information. Please check your connection and try again."}
       </p>
 
-      {/* Optional Retry Button */}
       {onRetry && (
         <button
           type="button"
           onClick={onRetry}
-          className="px-5 py-2.5 bg-white hover:bg-zinc-100 text-zinc-900 text-xs font-semibold rounded-full border border-zinc-200 shadow-2xs transition-all cursor-pointer"
+          className="px-5 py-2.5 bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 text-xs font-semibold rounded-full border border-zinc-200 dark:border-zinc-700 shadow-2xs transition-all cursor-pointer"
         >
           Try again
         </button>

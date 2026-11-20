@@ -27,11 +27,12 @@ export default function RootLayout() {
       clearTimeout(timeout);
     };
   }, [token, revalidate]);
+
   return (
-    <>
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors">
       <MainNav />
       <NotificationToast />
       <Outlet />
-    </>
+    </div>
   );
 }

@@ -46,19 +46,18 @@ export default function Jobs() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
           Find Your Next Opportunity!
         </h1>
-        <p className="text-base sm:text-lg text-zinc-600">
+        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
           Discover our up to date jobs.
         </p>
       </div>
       <div className="max-w-xl mx-auto mb-12">
-        {/* Search */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-zinc-200/80 transition-all focus-within:ring-2 focus-within:ring-teal-500/20 focus-within:border-teal-500">
+        <div className="flex flex-col sm:flex-row items-center gap-3 bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-sm border border-zinc-200/80 dark:border-zinc-800 transition-all focus-within:ring-2 focus-within:ring-teal-500/20 focus-within:border-teal-500">
           <div className="relative w-full flex items-center">
             <svg
-              className="absolute left-4 w-5 h-5 text-zinc-400 pointer-events-none"
+              className="absolute left-4 w-5 h-5 text-zinc-400 dark:text-zinc-500 pointer-events-none"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -81,12 +80,11 @@ export default function Jobs() {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search by job title or company..."
-              className="w-full pl-11 pr-4 py-3 bg-transparent text-zinc-900 placeholder-zinc-400 text-sm focus:outline-none"
+              className="w-full pl-11 pr-4 py-3 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none"
             />
           </div>
         </div>
 
-        {/* Filters */}
         <ul className="mt-4 flex flex-wrap items-center justify-center sm:justify-center gap-2 pb-2 mb-12">
           {filters.map((filter) => (
             <li key={filter}>
@@ -95,8 +93,8 @@ export default function Jobs() {
                 onClick={() => handleFilterClick(filter)}
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${
                   filter === selectedFilter
-                    ? "bg-teal-100/80 text-teal-900 border border-teal-200 font-semibold"
-                    : "bg-white text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 border border-zinc-200/80"
+                    ? "bg-teal-100/80 dark:bg-teal-950/90 text-teal-900 dark:text-teal-200 border border-teal-200 dark:border-teal-800 font-semibold"
+                    : "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800"
                 }`}
               >
                 {filter}
@@ -113,10 +111,10 @@ export default function Jobs() {
         </div>
       ) : (
         <div className="text-center py-12 px-4">
-          <p className="text-base font-semibold text-zinc-900 mb-1">
+          <p className="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
             No jobs found
           </p>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Try searching for something else or changing your filters.
           </p>
         </div>

@@ -31,14 +31,14 @@ export default function MyApplications() {
 
   if (data.length === 0) {
     return (
-      <div className="bg-white rounded-3xl p-12 text-center border border-zinc-200/80">
-        <div className="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+      <div className="bg-white dark:bg-zinc-900 rounded-3xl p-12 text-center border border-zinc-200/80 dark:border-zinc-800 max-w-2xl mx-auto my-10">
+        <div className="w-12 h-12 bg-teal-50 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center mx-auto mb-4">
           💼
         </div>
-        <h3 className="text-base font-semibold text-zinc-900">
+        <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
           No applications yet
         </h3>
-        <p className="text-xs text-zinc-500 mt-1 mb-6">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 mb-6">
           Explore open positions and submit your first job application.
         </p>
         <Link
@@ -53,17 +53,15 @@ export default function MyApplications() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
           My Applications
         </h1>
-        <p className="text-sm text-zinc-500 mt-1">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
           Track and manage the roles you have applied for across the portal.
         </p>
       </div>
 
-      {/* Applications List */}
       <div className="space-y-4">
         {data.map((app, index) => {
           const result = results[index];

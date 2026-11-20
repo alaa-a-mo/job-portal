@@ -109,22 +109,21 @@ export default function ApplicationForm({
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto p-0 bg-transparent backdrop:bg-zinc-900/50 backdrop:backdrop-blur-xs open:animate-in open:fade-in open:zoom-in-95 duration-200 max-w-lg w-full rounded-3xl shadow-xl"
+      className="m-auto p-0 bg-transparent backdrop:bg-zinc-900/50 dark:backdrop:bg-black/70 backdrop:backdrop-blur-xs open:animate-in open:fade-in open:zoom-in-95 duration-200 max-w-lg w-full rounded-3xl shadow-xl"
     >
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-zinc-200/80 flex flex-col max-h-[90vh]">
-        {/* Modal Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-zinc-100 mb-6">
+      <div className="bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 flex flex-col max-h-[90vh]">
+        <div className="flex items-start justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800 mb-6">
           <div>
-            <h2 className="text-xl font-bold text-zinc-900 tracking-tight">
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               Apply for Role
             </h2>
-            <p className="text-xs text-zinc-500 mt-0.5">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Submit your details below to submit your application.
             </p>
           </div>
           <button
             type="button"
-            className="p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors cursor-pointer"
             aria-label="Close modal"
             onClick={handleClose}
           >
@@ -144,7 +143,6 @@ export default function ApplicationForm({
           </button>
         </div>
 
-        {/* Modal Form Body */}
         <form
           ref={formRef}
           className="space-y-4 overflow-y-auto pr-1"
@@ -153,7 +151,7 @@ export default function ApplicationForm({
           <div>
             <label
               htmlFor="fullName"
-              className="block text-xs font-semibold text-zinc-700 mb-1"
+              className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
             >
               Full Name *
             </label>
@@ -166,10 +164,10 @@ export default function ApplicationForm({
               }
               required
               placeholder="e.g. Jane Doe"
-              className={`w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all ${validationErrors.fullName ? "border-red-500" : "border-zinc-200 focus:border-teal-500"}`}
+              className={`w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all ${validationErrors.fullName ? "border-red-500" : "border-zinc-200 dark:border-zinc-700 focus:border-teal-500"}`}
             />
             {validationErrors.fullName && (
-              <p className="text-xs text-red-500">
+              <p className="text-xs text-red-500 dark:text-red-400">
                 {validationErrors.fullName}
               </p>
             )}
@@ -178,7 +176,7 @@ export default function ApplicationForm({
           <div>
             <label
               htmlFor="email"
-              className="block text-xs font-semibold text-zinc-700 mb-1"
+              className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
             >
               Email Address *
             </label>
@@ -188,14 +186,14 @@ export default function ApplicationForm({
               type="email"
               required
               placeholder="e.g. jane@example.com"
-              className="w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+              className="w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
             />
           </div>
 
           <div>
             <label
               htmlFor="coverLetter"
-              className="block text-xs font-semibold text-zinc-700 mb-1"
+              className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1"
             >
               Cover Letter
             </label>
@@ -208,32 +206,31 @@ export default function ApplicationForm({
               }
               required
               placeholder="Tell us why you're a great fit..."
-              className={`w-full px-3.5 py-2.5 bg-white text-zinc-900 placeholder-zinc-400 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all ${validationErrors.coverLetter ? "border-red-500" : "border-zinc-200 focus:border-teal-500"}`}
+              className={`w-full px-3.5 py-2.5 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all ${validationErrors.coverLetter ? "border-red-500" : "border-zinc-200 dark:border-zinc-700 focus:border-teal-500"}`}
             />
             {validationErrors.coverLetter && (
-              <p className="text-xs text-red-500">
+              <p className="text-xs text-red-500 dark:text-red-400">
                 {validationErrors.coverLetter}
               </p>
             )}
           </div>
           {isError && (
-            <p className="text-xs text-red-500">
+            <p className="text-xs text-red-500 dark:text-red-400">
               Sorry, we couldn't submit your application. Please try again
             </p>
           )}
-          {/* Modal Actions */}
-          <div className="pt-4 border-t border-zinc-100 flex items-center justify-end gap-3 mt-6">
+          <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-end gap-3 mt-6">
             <button
               type="button"
               onClick={handleClose}
-              className="px-5 py-2.5 rounded-full border border-zinc-200 text-zinc-700 hover:bg-zinc-50 font-medium text-xs transition-all cursor-pointer"
+              className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium text-xs transition-all cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isPending}
-              className={`px-6 py-2.5 rounded-full text-white font-semibold text-xs transition-all shadow-xs ${isPending ? "bg-gray-400" : "bg-teal-600 hover:bg-teal-700 cursor-pointer"}`}
+              className={`px-6 py-2.5 rounded-full text-white font-semibold text-xs transition-all shadow-xs ${isPending ? "bg-gray-400 dark:bg-zinc-700" : "bg-teal-600 hover:bg-teal-700 cursor-pointer"}`}
             >
               {isPending ? "Submitting..." : "Submit Application"}
             </button>

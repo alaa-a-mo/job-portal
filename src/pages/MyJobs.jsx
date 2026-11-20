@@ -50,12 +50,12 @@ export default function MyJobs() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
           My Job Listings
         </h1>
       </div>
       {isDeleteError && (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-6 rounded-xl border border-red-200 dark:border-red-800/70 bg-red-50 dark:bg-red-950/60 px-4 py-3 text-sm text-red-700 dark:text-red-300">
           {deleteError.message}
         </div>
       )}
@@ -80,12 +80,12 @@ export default function MyJobs() {
         </div>
       ) : (
         <div className="text-center py-12 px-4">
-          <p className="text-base font-semibold text-zinc-900 mb-1">
+          <p className="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
             No jobs posted yet.
           </p>
           <Link
             to={"/jobs/new"}
-            className="inline-flex items-center text-sm font-medium text-zinc-600 hover:text-teal-700 transition-colors cursor-pointer"
+            className="inline-flex items-center text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-teal-700 dark:hover:text-teal-400 transition-colors cursor-pointer"
           >
             Create your first job listing →
           </Link>
