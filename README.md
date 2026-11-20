@@ -19,6 +19,10 @@ Built with **React 19**, **React Router (data router)**, **TanStack Query**, **R
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | ![Apply modal](./src/assets/screenshots/apply-modal-screenshot.png) | ![Received applications](./src/assets/screenshots/received-applications-screenshot.png) |
 
+| Dark mode: browse jobs                                                      | Dark mode: job details                                                         |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| ![Dark mode browse jobs](./src/assets/screenshots/dark-jobs-screenshot.png) | ![Dark mode job details](./src/assets/screenshots/dark-details-screenshot.png) |
+
 | Mobile layout                                                           |
 | ----------------------------------------------------------------------- |
 | ![Mobile layout](./src/assets/screenshots/mobile-layout-screenshot.png) |
